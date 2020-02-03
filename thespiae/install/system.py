@@ -18,7 +18,8 @@
 
 from __future__ import annotations
 
-from asyncio import gather, create_task, get_running_loop, run as aio_run
+from asyncio import gather, create_task, get_running_loop, run as aio_run, set_event_loop_policy, \
+    DefaultEventLoopPolicy, WindowsSelectorEventLoopPolicy
 from concurrent.futures import ThreadPoolExecutor
 from hashlib import sha256
 from io import SEEK_END
@@ -27,6 +28,7 @@ from os.path import exists, dirname
 from re import fullmatch, ASCII
 from shutil import copyfile, rmtree, unpack_archive
 from subprocess import run as subprocess_run, CalledProcessError
+import sys
 from typing import TYPE_CHECKING
 from winreg import OpenKeyEx, HKEY_LOCAL_MACHINE, HKEY_CURRENT_USER, KEY_WOW64_32KEY, KEY_READ, KEY_WOW64_64KEY
 
@@ -44,6 +46,10 @@ if TYPE_CHECKING:
 
     from .data import DownloadSpec
     from .protocol import Feedback
+
+# TODO: remove for 4.x+ version of aiohttp (https://github.com/aio-libs/aiohttp/issues/4324) <AP>
+if sys.platform == 'win32':
+    set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 
 
 def _test_key_present_view(root: int, path: str, key: str, view: int) -> bool:
