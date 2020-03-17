@@ -124,7 +124,7 @@ all supported installation and removal methods. ::
       uninstall_args:
         - '/S'
       path_entries:
-        - '${install_directory}'
+        - '${install_directory}\bin'
       architecture: 'x86'
       versions:
         - version: '2.2.15'
