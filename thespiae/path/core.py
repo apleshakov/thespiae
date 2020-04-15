@@ -27,7 +27,7 @@ from .envparse.EnvLexer import EnvLexer
 from .envparse.EnvParserListener import EnvParserListener
 from .exception import PathEntryError, PathError, InconsistentUserPathEntryDataError, \
     InconsistentActualPathEntryDataError, InconsistentUserPathExtensionError, InconsistentPathEntryExtensionError, \
-    InvalidPathEntryError, InvalidSystemPath, InvalidUserPath
+    InvalidPathEntryError, InvalidSystemPathError, InvalidUserPathError
 from .factory import EnvParser
 
 if TYPE_CHECKING:
@@ -147,7 +147,7 @@ class PathProcessor:
         try:
             system = get_path_entries(self.manager.extend_path_data(self.manager.get_system_path()), False)
         except PathError:
-            raise InvalidSystemPath
+            raise InvalidSystemPathError
         else:
             raw_user_path = self.manager.get_user_path()
             try:
@@ -155,7 +155,7 @@ class PathProcessor:
                 user_path = self.manager.extend_path_data(raw_user_path)
                 user_path_entries = get_path_entries(user_path, False)
             except PathError:
-                raise InvalidUserPath
+                raise InvalidUserPathError
             else:
                 try:
                     new_user_path = construct_new_user_path(set(system), raw_user_path_entries, user_path_entries,

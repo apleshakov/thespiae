@@ -25,7 +25,7 @@ from thespiae.conf.core import create_app_entry
 from thespiae.path.core import get_path_entries, get_single_path_entry, construct_new_user_path
 from thespiae.path.exception import PathEntryError, PathError, InconsistentUserPathExtensionError, \
     InconsistentPathEntryExtensionError, InconsistentUserPathEntryDataError, InconsistentActualPathEntryDataError, \
-    InvalidPathEntryError, InvalidSystemPath, InvalidUserPath
+    InvalidPathEntryError, InvalidSystemPathError, InvalidUserPathError
 from thespiae.path.protocol import Feedback
 from .helper import complex_string, PathManagerMockResetMixin, set_path_manager_data
 from .singleton import path_processor, path_manager
@@ -113,7 +113,7 @@ class PathProcessorTest(PathManagerMockResetMixin, TestCase):
         app_data = AppData([create_app_entry([{'name': 'a', 'version': '1',
                                                'path_entries': ['F:\\bin'], 'keep': True}], []),
                             create_app_entry([{'name': 'b', 'version': '2'}], [])])
-        with self.assertRaises(InvalidSystemPath):
+        with self.assertRaises(InvalidSystemPathError):
             path_processor.process_path_changes(app_data, fb)
         fb.report_path_analysis.assert_called_once()
         fb.confirm_user_path_update.assert_not_called()
@@ -128,7 +128,7 @@ class PathProcessorTest(PathManagerMockResetMixin, TestCase):
         app_data = AppData([create_app_entry([{'name': 'a', 'version': '1',
                                                'path_entries': ['F:\\bin'], 'keep': True}], []),
                             create_app_entry([{'name': 'b', 'version': '2'}], [])])
-        with self.assertRaises(InvalidUserPath):
+        with self.assertRaises(InvalidUserPathError):
             path_processor.process_path_changes(app_data, fb)
         fb.report_path_analysis.assert_called_once()
         fb.confirm_user_path_update.assert_not_called()

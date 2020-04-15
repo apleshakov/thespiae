@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING
 from urllib.parse import urlparse
 
 from .data import DownloadSpec
-from .exception import InvalidOrMissingAppDataError, UnknownInstallType, UnknownUninstallType, \
+from .exception import InvalidOrMissingAppDataError, UnknownInstallTypeError, UnknownUninstallTypeError, \
     InterruptedFileOperationsError
 
 if TYPE_CHECKING:
@@ -263,13 +263,13 @@ class SoftwareProcessor:
                 ih = h
                 break
         else:
-            raise UnknownInstallType(app_entry)
+            raise UnknownInstallTypeError(app_entry)
         for h in self._uhs:
             if h.is_applicable(app_entry):
                 uh = h
                 break
         else:
-            raise UnknownUninstallType(app_entry)
+            raise UnknownUninstallTypeError(app_entry)
         return ih, uh
 
     def process(self, download_dir_path: str, config: AppData, fb: Feedback) -> None:

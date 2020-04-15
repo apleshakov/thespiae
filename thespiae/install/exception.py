@@ -49,13 +49,13 @@ class InvalidOrMissingAppDataError(AppEntryMixin, ThespiaeError):
 
 @generate___str__(_('Unrecognized application installation type'))
 @dataclass(frozen=True)
-class UnknownInstallType(AppEntryMixin, ThespiaeError):
+class UnknownInstallTypeError(AppEntryMixin, ThespiaeError):
     pass
 
 
 @generate___str__(_('Unrecognized application removal type'))
 @dataclass(frozen=True)
-class UnknownUninstallType(AppEntryMixin, ThespiaeError):
+class UnknownUninstallTypeError(AppEntryMixin, ThespiaeError):
     pass
 
 

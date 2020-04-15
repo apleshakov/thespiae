@@ -46,13 +46,13 @@ class InconsistentActualPathEntryDataError(ThespiaeError):
 
 @generate___str__(_('Invalid value of system PATH'))
 @dataclass(frozen=True)
-class InvalidSystemPath(ThespiaeError):
+class InvalidSystemPathError(ThespiaeError):
     pass
 
 
 @generate___str__(_('Invalid value of user PATH'))
 @dataclass(frozen=True)
-class InvalidUserPath(ThespiaeError):
+class InvalidUserPathError(ThespiaeError):
     pass
 
 

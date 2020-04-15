@@ -24,7 +24,7 @@ from unittest.mock import call, NonCallableMock
 from thespiae.conf import AppData, AppEntry
 from thespiae.conf.core import get_app_config_from
 from thespiae.install.exception import InvalidOrMissingAppDataError, InterruptedFileOperationsError, \
-    UnknownInstallType, UnknownUninstallType
+    UnknownInstallTypeError, UnknownUninstallTypeError
 from thespiae.install.protocol import Feedback
 from .helper import set_install_manager_data, InstallManagerMockResetMixin, DownloadManagerMockResetMixin, \
     ExtraAssertMixin, set_download_manager_data
@@ -513,7 +513,7 @@ class SoftwareProcessorTestCase(InstallManagerMockResetMixin, DownloadManagerMoc
         fb = NonCallableMock(spec_set=Feedback)
         set_download_manager_data(set())
         data = AppData([AppEntry(name='test', installer_url='http://example.com/file.exe')])
-        with self.assertRaises(UnknownUninstallType) as c:
+        with self.assertRaises(UnknownUninstallTypeError) as c:
             software_processor.process('C:\\temp', data, fb)
         self.assertEqual(c.exception.app_entry, data.to_uninstall[0])
 
@@ -521,6 +521,6 @@ class SoftwareProcessorTestCase(InstallManagerMockResetMixin, DownloadManagerMoc
         fb = NonCallableMock(spec_set=Feedback)
         set_download_manager_data(set())
         data = AppData([AppEntry(name='test', uninstaller_path='C:\\uninst.exe', keep=True)])
-        with self.assertRaises(UnknownInstallType) as c:
+        with self.assertRaises(UnknownInstallTypeError) as c:
             software_processor.process('C:\\temp', data, fb)
         self.assertEqual(c.exception.app_entry, data.to_install[0])
