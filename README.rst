@@ -6,7 +6,7 @@ Thespiae
 Introduction
 ------------
 
-Thespiae is a tool to setup development environments for Windows OS family; doesn't require remote repository or
+Thespiae is a tool to setup Windows-based development environments; doesn't require remote repository or
 prebuilt packages. It helps with routine tasks such as downloading, verification, executing/unpacking/copying/removing
 and PATH environment variable manipulation. You have to specify configuration file (YAML format) and directory
 to store downloaded distribution files in.
@@ -27,43 +27,11 @@ tell the tool to use configuration file *C:\\config.yml* and distribution file d
 Thespiae asks you to confirm distribution download and software installation or removal, changes to current user's
 *PATH* environment variable.
 
-Output
-------
-
-This is console output of running Thespiae with the configuration example on Windows 10. ::
-
-    Checking software
-    Download distribution for
-            vagrant:2.2.4:x86_64 virtualbox:6.0.4 git:2.21.0:x86_64 gnupg:2.2.15:x86
-    To install
-            vagrant:2.2.4:x86_64 virtualbox:6.0.4 git:2.21.0:x86_64 gnupg:2.2.15:x86
-    Continue? [y/N]:y
-    Downloading
-    vagrant:2.2.4:x86_64: 100%|#########################################################| 240M/240M [01:12<00:00, 3.30MB/s]
-        virtualbox:6.0.4: 100%|#########################################################| 220M/220M [01:12<00:00, 3.02MB/s]
-       git:2.21.0:x86_64: 100%|#########################################################| 100M/100M [01:12<00:00, 1.38MB/s]
-        gnupg:2.2.15:x86: 100%|#######################################################| 4.18M/4.18M [01:12<00:00, 57.4kB/s]
-    Installing software
-    [1/4] installing vagrant:2.2.4:x86_64
-    vagrant:2.2.4:x86_64 installed
-    [2/4] installing virtualbox:6.0.4
-    virtualbox:6.0.4 installed
-    [3/4] installing git:2.21.0:x86_64
-    git:2.21.0:x86_64 installed
-    [4/4] installing gnupg:2.2.15:x86
-    gnupg:2.2.15:x86 installed
-    Checking user PATH
-    Current user PATH
-            %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
-    Updated user PATH
-            %USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\tools\virtualbox\6.0.4_128413;C:\tools\git\2.21.0\cmd;C:\tools\gnupg\2.2.15
-    Continue? [y/N]:y
-    User PATH updated
 
 Configuration
 -------------
 
-Please read and accept all corresponding licenses before using the following example. Check
+Please read and accept all corresponding licenses before using this example. Check
 unit tests for *conf* and *install* submodules in the source distribution to learn about config processing features,
 all supported installation and removal methods. ::
 
@@ -136,6 +104,41 @@ Valid value for *file_hash* field is a *SHA-256* distribution file hash. This fi
 verification is performed for the corresponding entry.
 
 Entries with negative or missing *keep* field value are considered for removal.
+
+
+Output
+------
+
+This is output of running Thespiae with the configuration example on Windows 10. ::
+
+    Checking software
+    Download distribution for
+            vagrant:2.2.4:x86_64 virtualbox:6.0.4 git:2.21.0:x86_64 gnupg:2.2.15:x86
+    To install
+            vagrant:2.2.4:x86_64 virtualbox:6.0.4 git:2.21.0:x86_64 gnupg:2.2.15:x86
+    Continue? [y/N]:y
+    Downloading
+    vagrant:2.2.4:x86_64: 100%|#########################################################| 240M/240M [01:12<00:00, 3.30MB/s]
+        virtualbox:6.0.4: 100%|#########################################################| 220M/220M [01:12<00:00, 3.02MB/s]
+       git:2.21.0:x86_64: 100%|#########################################################| 100M/100M [01:12<00:00, 1.38MB/s]
+        gnupg:2.2.15:x86: 100%|#######################################################| 4.18M/4.18M [01:12<00:00, 57.4kB/s]
+    Installing software
+    [1/4] installing vagrant:2.2.4:x86_64
+    vagrant:2.2.4:x86_64 installed
+    [2/4] installing virtualbox:6.0.4
+    virtualbox:6.0.4 installed
+    [3/4] installing git:2.21.0:x86_64
+    git:2.21.0:x86_64 installed
+    [4/4] installing gnupg:2.2.15:x86
+    gnupg:2.2.15:x86 installed
+    Checking user PATH
+    Current user PATH
+            %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+    Updated user PATH
+            %USERPROFILE%\AppData\Local\Microsoft\WindowsApps;C:\tools\virtualbox\6.0.4_128413;C:\tools\git\2.21.0\cmd;C:\tools\gnupg\2.2.15
+    Continue? [y/N]:y
+    User PATH updated
+
 
 License
 -------
