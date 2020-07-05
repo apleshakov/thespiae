@@ -20,7 +20,7 @@ from setuptools import setup, find_packages
 
 setup(name='thespiae', version='0.1',
       python_requires='>=3.8.1',
-      install_requires=['antlr4-python3-runtime>=4.7.2', 'pyyaml>=5.1', 'aiohttp>=3.6.2 ', 'tqdm>=4.31.1',
+      install_requires=['antlr4-python3-runtime~=4.7.2', 'pyyaml>=5.1', 'aiohttp>=3.6.2 ', 'tqdm>=4.31.1',
                         'colorama~=0.4.1'],
       packages=find_packages(exclude=['thespiae.tests', 'thespiae.tests.*']),
       entry_points={'console_scripts': ['thespiae=thespiae.core:main']},
