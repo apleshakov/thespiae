@@ -11,6 +11,11 @@ prebuilt packages. It helps with routine tasks such as downloading, verification
 and PATH environment variable manipulation. You have to specify configuration file (YAML format) and directory
 to store downloaded distribution files in.
 
+Installation
+------------
+
+Releases are available from PyPI at https://pypi.org/project/thespiae/
+
 Usage
 -----
 
